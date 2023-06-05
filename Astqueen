@@ -1,0 +1,161 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+struct ChessRobot {
+
+    int x;
+
+    int y;
+
+};
+
+void origin(struct ChessRobot* robot) {
+
+    robot->x = 0;
+
+    robot->y = 0;
+
+    printf("Robby's location goes back to its origin (%d, %d) position.\n", robot->x, robot->y);
+
+}
+
+void location(struct ChessRobot* robot) {
+
+    printf("Robby is at location (%d, %d).\n", robot->x, robot->y);
+
+}
+
+void move(struct ChessRobot* robot, int direction, int points) {
+
+    switch (direction) {
+
+        case 2:
+
+            robot->x += points;
+
+            printf("Robby moved East to (%d, %d).\n", robot->x, robot->y);
+
+            break;
+
+        case 4:
+
+            robot->x -= points;
+
+            printf("Robby moved West to (%d, %d).\n", robot->x, robot->y);
+
+            break;
+
+        case 6:
+
+            robot->y += points;
+
+            printf("Robby moved North to (%d, %d).\n", robot->x, robot->y);
+
+            break;
+
+        case 8:
+
+            robot->y -= points;
+
+            printf("Robby moved South to (%d, %d).\n", robot->x, robot->y);
+
+            break;
+
+        default:
+
+            printf("Invalid direction. Please try again.\n");
+
+            break;
+
+    }
+
+}
+
+void exitGame() {
+
+    printf("Coding is Fun!!! Goodbye ;)\n");
+
+}
+
+int main() {
+
+    struct ChessRobot robot;
+
+    robot.x = 0;
+
+    robot.y = 0;
+
+    char choice;
+
+    int direction, points;
+
+    printf("Robot Command Menu\n\n\n");
+
+    while (1) {
+
+        printf("a] Origin\n");
+
+        printf("b] Location\n");
+
+        printf("c] Move\n");
+
+        printf("d] Exit\n\n\n");
+
+        printf("Enter a valid choice: ");
+
+        scanf(" %c", &choice);
+
+        switch (choice) {
+
+            case 'a':
+
+                origin(&robot);
+
+                break;
+
+            case 'b':
+
+                location(&robot);
+
+                break;
+
+            case 'c':
+
+                printf("[2] East, [4] West, [6] North, [8] South\n");
+
+                printf("Enter direction: ");
+
+                scanf("%d", &direction);
+
+                printf("How many points? : ");
+
+                scanf("%d", &points);
+
+                move(&robot, direction, points);
+
+                break;
+
+            case 'd':
+
+                exitGame();
+
+                exit(0);
+
+            default:
+
+                printf("Invalid choice. Please try again.\n");
+
+                break;
+
+        }
+
+        printf("\n\n\nPress any key to continue...\n");
+
+        getchar();
+
+    }
+
+    return 0;
+
+}
